@@ -1,3 +1,7 @@
-Default projectile motion
-Plane cargo problem
 Orbit path calculator
+Rocket simulator
+Default projectile motion
+Equilibrium
+Submarine expansion
+Plane cargo problem
+Bridge builder
