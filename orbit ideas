@@ -1,0 +1,24 @@
+Orbit Path Calculator
+
+Conditions
+  Fuel amount
+  Engine
+  Firing angle
+  Payload kg
+  Planet
+  
+Things that happen
+  Mass calculated depending on fuel left
+  velocity and acceleration calculated based on mass
+  test if rocket makes escape velocity
+  stop if fuel expended accelerating
+
+Results
+  Orbit?
+  if so what apogee/perigee and each velocity 
+  Fuel left
+  
+Stages maybeeeeeeeeeeee
+  Burn/wait
+  angle relative to rocket
+  for t secodns
