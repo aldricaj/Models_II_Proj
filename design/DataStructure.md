@@ -21,6 +21,6 @@ Struct data type with parameters:
 
 Struct data type with parameters:
 
-- **_length_**: length of tank(m) calculated from user input
+- **_length_**: length of tank(m) 
 - **emptyMass**: mass of the container without fuel(kg)
-- **fuel**: fuel in tank(m^3)
+- **fuel**: fuel in tank(m^3)calculated from user input for length
