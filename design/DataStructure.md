@@ -17,7 +17,7 @@ Struct data type with parameters:
 - **_thrust_**: thrust of engine(N/s)
 - **burnRate**: rate that the engine burns fuel(m^3/s)
 
-## Fuel Tank
+## fuelTank
 
 Struct data type with parameters:
 
