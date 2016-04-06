@@ -1,6 +1,6 @@
 % Andrew Aldrich
 % basic model for rocket going into orbit
-
+clear all;
 % ================Define Inputs and constants===================
 
 % science constants
@@ -78,25 +78,29 @@ for index = 1:length(time)
     
     % calculate accelerations
     gravForce(index) = GRAV_CONST * planetMass * mass(index) / pos.radius(index)^2;
-    gravAcc(index) = -1*gravForce(index) / mass(index);
-    thrustAcc(index) = thrust * deltaT / mass(index);
-    acc(index) = thrustAcc(index) * cos(launchAngle) - gravAcc(index);
+    a = thrust*cos(launchAngle);
+    b = thrust*sin(launchAngle);
 
-    % position calculations
-    %{
-        a and b are place holders to the x and y components of the position
-            relative to the rocket if that makes sense. Honestly, this part 
-            makes my head hurt...
-    %}
-    a(index) = .5 * acc(index)*cos(launchAngle)*time(index)^2+pos.x(1);
-    b(index) = .5 * acc(index)*sin(launchAngle)*time(index)^2+pos.y(1);
+    x = gravForce(index)*cos(pos.theta(index));
+    y = gravForce(index)*sin(pos.theta(index));
+
+    X = a + x;
+    Y = b + y;
+
+    theta = atan(Y/X);
+    mag = sqrt(X^2+Y^2);
+
+    xAcc(index) = mag * cos(theta)/mass(index);
+    yAcc(index) = mag * sin(theta)/mass(index);
+
     
-    pos.theta(index+1) = atan(b(index) / a(index));
-    pos.radius(index+1) = sqrt(a(index)^2+b(index)^2);
 
     % convert from polar to cartesian
-    pos.x(index+1) = pos.radius(index+1) * cos(pos.theta(index+1));
-    pos.y(index+1) = pos.radius(index+1) * sin(pos.theta(index+1));
+    pos.x(index+1) = .5 * xAcc(index) * time(index)+pos.x(1);
+    pos.y(index+1) = .5 * yAcc(index) * time(index)+pos.y(1);
+    
+    pos.theta(index+1) = atan(pos.y(index+1)/pos.x(index+1));
+    pos.radius(index+1)= sqrt(pos.x(index+1)^2+pos.y(index+1)^2);
 
     fuelVolume(index+1) = fuelVolume(index) - burnRate * deltaT;
 end
